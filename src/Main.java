@@ -3,9 +3,19 @@ public class Main {
 
     }
 
-    
+    public static double balance(){
 
 
+    }
+
+    public static double deposit(){
+
+    }
+
+    public static double withdraw(){
+
+
+    }
 
 
 
