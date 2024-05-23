@@ -85,16 +85,17 @@ static Scanner scnr = new Scanner(in);
     public static void expensemap(String r, Double e){
         HashMap<String, Double> expense = new HashMap<String, Double>();
         expense.put(r , e);
-
+        out.println(expense);
     }
-    //TODO: HashMap ends program
+    //TODO: ADD LOOP TO GET USER EXPENSE
     public static void expenses(){
        Double userExpense = 0.00;
        String expenseReason;
+
        out.println("How much is the expense?");
        userExpense = scnr.nextDouble();
        out.println("What is the reason for the expense?");
-       expenseReason = scnr.nextLine();
+       expenseReason = scnr.next();
        expensemap(expenseReason, userExpense);
     }
 
