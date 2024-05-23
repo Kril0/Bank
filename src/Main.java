@@ -4,6 +4,7 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args){
+
         menu();
 
         }
@@ -11,14 +12,17 @@ public class Main {
 
 static Scanner scnr = new Scanner(in);
     static double balance = 0.00;
+    static HashMap<String, Double> expenses = new HashMap<String, Double>();
+
 
     public static void menu(){
-        out.println("1.    Balance");
-        out.println("2.    Withdraw");
-        out.println("3.    Deposit");
-        out.println("4.    Budget");
-        out.println("5.    Expenses");
-        out.println("6.    Quit");
+        System.out.println("1.    Balance");
+        System.out.println("2.    Withdraw");
+        System.out.println("3.    Deposit");
+        System.out.println("4.    Budget");
+        System.out.println("5.    Expenses");
+        System.out.println("6.    See expenses");
+        System.out.println("7.    Quit");
         int userInput = scnr.nextInt();
 
         if (userInput == 1){
@@ -37,11 +41,14 @@ static Scanner scnr = new Scanner(in);
             expenses();
         }
         else if (userInput == 6){
-            out.println("Goodbye");
+            getExpenses();
+        }
+        else if (userInput == 7){
+            System.out.println("Goodbye");
             System. exit(0);
         }
         else{
-            out.println("Error: Invalid input");
+            System.out.println("Error: Invalid input");
         }
     }
 
@@ -50,11 +57,11 @@ static Scanner scnr = new Scanner(in);
     }
 
     public static void deposit(){
-        out.println("Enter amount to deposit");
+        System.out.println("Enter amount to deposit");
         double userDeposit = 0.00;
         userDeposit = scnr.nextDouble();
         balance += userDeposit;
-        out.printf("Your new balance is $%.2f", balance);
+        System.out.printf("Your new balance is $%.2f", balance);
 
     }
 
@@ -62,45 +69,53 @@ static Scanner scnr = new Scanner(in);
 
     public static void withdraw(){
         double userWithdraw = 0.00;
-        out.println("Enter amount to withdraw");
+        System.out.println("Enter amount to withdraw");
         userWithdraw = scnr.nextDouble();
         if (balance - userWithdraw > 0.00){
             balance -= userWithdraw;
-            out.printf("Your new balance is $%.2f", balance);
+            System.out.printf("Your new balance is $%.2f", balance);
         }
         else if (balance - userWithdraw < 0.00){
-             out.println("Negative balance, can not withdraw");
+            System.out.println("Negative balance, can not withdraw");
         }
         else{
-            out.println("Error: withdraw()");
+            System.out.println("Error: withdraw()");
         }
 
     }
 
     public static void budget(){
-        out.println("What is your maximum budget?");
+        System.out.println("What is your maximum budget?");
         double maxBudget = scnr.nextDouble();
     }
 
-    public static void expensemap(String r, Double e){
-        HashMap<String, Double> expense = new HashMap<String, Double>();
-        expense.put(r , e);
-        out.println(expense);
+    public static void expensemap(String reason, Double expense){
+        expenses.put(reason , expense);
+        System.out.println(expense);
     }
+
+    //TODO: get expenses and output them
+    public static void getExpenses(){
+        for (int i = 0; i < expenses.size(); ++i){
+            System.out.print();
+        }
+    }
+
     //FIXME: adding 2 word string in expenseReason crashes program
     public static void expenses(){
        Double userExpense = 0.00;
        String expenseReason;
-        out.println("Type a negative number to go back to menu");
+        System.out.println("Type a negative number to go back to menu");
         do{
-            out.println("\nHow much is the expense?");
+            System.out.println("\nHow much is the expense?");
             userExpense = scnr.nextDouble();
             if (userExpense < 0){
-                out.println("Going back to menu");
+                System.out.println("Going back to menu");
                 menu();
             }
-            out.println("What is the reason for the expense?");
+            System.out.println("What is the reason for the expense?");
             expenseReason = scnr.next();
+            System.out.println(expenseReason);
             expensemap(expenseReason, userExpense);
         }while(true);
 
