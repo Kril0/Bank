@@ -1,18 +1,20 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 import static java.lang.System.*;
 import java.util.HashMap;
+
 public class Main {
 
     public static void main(String[] args){
 
         menu();
 
-        }
+    }
 
 
-static Scanner scnr = new Scanner(in);
+    static Scanner scnr = new Scanner(in);
     static double balance = 0.00;
-    static HashMap<String, Double> expenses = new HashMap<String, Double>();
+    static HashMap<String, Double> expense = new HashMap<String, Double>();
 
 
     public static void menu(){
@@ -89,34 +91,41 @@ static Scanner scnr = new Scanner(in);
         double maxBudget = scnr.nextDouble();
     }
 
-    public static void expensemap(String reason, Double expense){
-        expenses.put(reason , expense);
-        System.out.println(expense);
+    public static void putExpense(String reason, Double e){
+        expense.put(reason , e);
     }
 
     //TODO: get expenses and output them
     public static void getExpenses(){
-        for (int i = 0; i < expenses.size(); ++i){
-            System.out.print();
+        for (String i : expense.keySet()){
+            System.out.print(i + "\t");
+            System.out.printf("$%.2f", expense.get(i));
         }
     }
 
-    //FIXME: adding 2 word string in expenseReason crashes program
     public static void expenses(){
-       Double userExpense = 0.00;
-       String expenseReason;
+        Double userExpense = 0.00;
+        String expenseReason;
         System.out.println("Type a negative number to go back to menu");
         do{
             System.out.println("\nHow much is the expense?");
             userExpense = scnr.nextDouble();
+            System.out.println(userExpense);
             if (userExpense < 0){
                 System.out.println("Going back to menu");
                 menu();
+                break;
             }
-            System.out.println("What is the reason for the expense?");
-            expenseReason = scnr.next();
-            System.out.println(expenseReason);
-            expensemap(expenseReason, userExpense);
+
+            scnr.nextLine();
+
+            System.out.println("\nWhat is the reason for the expense?");
+            expenseReason = scnr.nextLine();
+            putExpense(expenseReason, userExpense);
+
+
+
+
         }while(true);
 
 
@@ -125,8 +134,9 @@ static Scanner scnr = new Scanner(in);
 
 
 
-    }
 
+
+}
 
 
 
