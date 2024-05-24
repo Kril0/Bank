@@ -54,59 +54,86 @@ public class Main {
         }
     }
 
-    public static double getBalance(){
-        return balance;
+    public static void getBalance(){
+        System.out.println("\nYour balance is " + balance + "\n");
+        menu();
     }
 
     public static void deposit(){
-        System.out.println("Enter amount to deposit");
-        double userDeposit = 0.00;
-        userDeposit = scnr.nextDouble();
-        balance += userDeposit;
-        System.out.printf("Your new balance is $%.2f", balance);
-
+        System.out.println("Enter negative to go to menu");
+        do {
+            System.out.println("Enter amount to deposit");
+            double userDeposit = 0.00;
+            userDeposit = scnr.nextDouble();
+            if (userDeposit < 0){
+                menu();
+                break;
+            }
+            else {
+                balance += userDeposit;
+                System.out.printf("Your new balance is $%.2f ", balance);
+                System.out.println();
+            }
+        }while(true);
     }
 
 
 
     public static void withdraw(){
         double userWithdraw = 0.00;
-        System.out.println("Enter amount to withdraw");
-        userWithdraw = scnr.nextDouble();
-        if (balance - userWithdraw > 0.00){
-            balance -= userWithdraw;
-            System.out.printf("Your new balance is $%.2f", balance);
-        }
-        else if (balance - userWithdraw < 0.00){
-            System.out.println("Negative balance, can not withdraw");
-        }
-        else{
-            System.out.println("Error: withdraw()");
-        }
+        System.out.println("Enter negative to go to menu");
+        do {
+            System.out.println("Enter amount to withdraw");
+            userWithdraw = scnr.nextDouble();
+            if (userWithdraw < 0){
+                menu();
+                break;
+            }
+            else if (userWithdraw < 0){
+                menu();
+                break;
+            }
+            else if (balance - userWithdraw > 0.00) {
+                balance -= userWithdraw;
+                System.out.printf("Your new balance is $%.2f", balance);
+            } else if (balance - userWithdraw < 0.00) {
+                System.out.println("Negative balance, can not withdraw");
+            }
+
+            else {
+                System.out.println("Error: withdraw()");
+            }
+        }while(true);
 
     }
 
     public static void budget(){
         System.out.println("What is your maximum budget?");
         double maxBudget = scnr.nextDouble();
+        menu();
     }
+
+//    TODO: connect budget to expenses, deposit, and withdraw
+
 
     public static void putExpense(String reason, Double e){
         expense.put(reason , e);
     }
 
-    //TODO: get expenses and output them
     public static void getExpenses(){
         for (String i : expense.keySet()){
             System.out.print(i + "\t");
             System.out.printf("$%.2f", expense.get(i));
+            System.out.println("");
+            menu();
         }
     }
+
 
     public static void expenses(){
         Double userExpense = 0.00;
         String expenseReason;
-        System.out.println("Type a negative number to go back to menu");
+        System.out.println("Enter negative to go to menu");
         do{
             System.out.println("\nHow much is the expense?");
             userExpense = scnr.nextDouble();
@@ -122,10 +149,6 @@ public class Main {
             System.out.println("\nWhat is the reason for the expense?");
             expenseReason = scnr.nextLine();
             putExpense(expenseReason, userExpense);
-
-
-
-
         }while(true);
 
 
