@@ -2,6 +2,7 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 import static java.lang.System.*;
 import java.util.HashMap;
+import java.io.FileWriter;
 
 public class Main {
 
@@ -15,6 +16,8 @@ public class Main {
     static Scanner scnr = new Scanner(in);
     static double balance = 0.00;
     static HashMap<String, Double> expense = new HashMap<String, Double>();
+
+
 
 
     public static void menu(){
@@ -137,12 +140,12 @@ public class Main {
         do{
             System.out.println("\nHow much is the expense?");
             userExpense = scnr.nextDouble();
-            System.out.println(userExpense);
             if (userExpense < 0){
                 System.out.println("Going back to menu");
                 menu();
                 break;
             }
+
 
             scnr.nextLine();
 
