@@ -1,33 +1,29 @@
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 public class res {
-    public static void main(String[] args){
+    public static void main(String[] args)throws IOException {
+
 
 
     }
 
+    public static void fileReading()throws IOException{
+        File file = new File("/Users/logankrieg/Desktop/BankInfo/BankShit.txt");
+        Scanner scan = new Scanner(file);
+        System.out.println(file);
 
-    public class ResourceLoader {
-
-        private static final String BANKINFO_FOLDERNAME = "questions";
-
-        /**
-         * Returns the folder containing all the questions
-         *
-         */
-        public static File getBankInfoFolder(){
-            String userDirectory = System.getProperty("user.dir");
-            System.out.println(userDirectory+"\\"+BANKINFO_FOLDERNAME);
-
-            return new File(userDirectory+"\\"+BANKINFO_FOLDERNAME);
+        String fileContent = "";
+        while(scan.hasNextLine()){
+            fileContent = fileContent.concat(scan.nextLine() + "\n");
         }
+        FileWriter writer = new FileWriter("/Users/logankrieg/Desktop/BankInfo/BankShit.txt");
+        writer.write(fileContent);
+        writer.close();
+    }
+
 
     }
-    File folder = ResourceLoader.getBankInfoFolder();
 
-for(File f : folder.listFiles()){
-
-        // Read the text file...
-
-    }
-}

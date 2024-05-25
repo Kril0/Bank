@@ -1,13 +1,14 @@
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 import static java.lang.System.*;
 import java.util.HashMap;
 import java.io.FileWriter;
 
-public class Main {
+public class Main extends res{
 
-    public static void main(String[] args){
-
+    public static void main(String[] args)throws IOException {
+        res.fileReading();
         menu();
 
     }
