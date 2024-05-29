@@ -1,14 +1,18 @@
+import java.sql.Connection;
+import java.sql.Statement;
 import java.io.IOException;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 import static java.lang.System.*;
 import java.util.HashMap;
 import java.io.FileWriter;
 
-public class Main extends res{
+public class Main{
 
     public static void main(String[] args)throws IOException {
-        res.fileReading();
+        DB_connect();
         menu();
 
     }
@@ -19,6 +23,23 @@ public class Main extends res{
     static HashMap<String, Double> expense = new HashMap<String, Double>();
 
 
+public static void DB_connect() {
+    try {
+
+
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sys", "root", "livelogan4");
+        Statement statement = connection.createStatement();
+
+        ResultSet resultset = statement.executeQuery("select * from bank_info");
+
+        while (resultset.next()) {
+            System.out.println(resultset.getString("bank_balance"));
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 
 
     public static void menu(){
