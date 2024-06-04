@@ -35,6 +35,9 @@ public static void DB_connect() {
         while (resultset.next()) {
             System.out.println(resultset.getString("bank_balance"));
         }
+        double rowsaffected = statement.executeUpdate("UPDATE bank_info, SET bank_balance = 2.00, WHERE PersonID = 1;");
+
+        out.println("rows changed: " + rowsaffected);
 
     } catch (Exception e) {
         e.printStackTrace();
@@ -74,10 +77,10 @@ public static void DB_connect() {
             System.out.println("Goodbye");
             System. exit(0);
         }
-        else{
+        else
             System.out.println("Error: Invalid input");
         }
-    }
+
 
     public static void getBalance(){
         System.out.println("\nYour balance is " + balance + "\n");
@@ -150,8 +153,9 @@ public static void DB_connect() {
             System.out.print(i + "\t");
             System.out.printf("$%.2f", expense.get(i));
             System.out.println("");
-            menu();
+
         }
+        menu();
     }
 
 
@@ -185,6 +189,8 @@ public static void DB_connect() {
 
 
 }
+
+
 
 
 
